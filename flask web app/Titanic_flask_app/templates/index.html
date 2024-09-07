@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Survival Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Titanic Prediction App</h1>
+
+    <!-- Image of the Titanic -->
+    <div class="image-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/RMS_Titanic_3.jpg" alt="RMS Titanic" class="titanic-image">
+    </div>
+    <h2>Data Visualization </h2>
+    <!-- Age Distribution by Gender -->
+    <h3>Age Distribution by Gender</h3>
+    <div class="graph-container">
+        {{ graph1|safe }}
+    </div>
+
+    <!-- Fare Distribution by Embarkation and Gender -->
+    <h3>Fare Distribution by Embarkation and Gender</h3>
+    <div class="graph-container">
+        {{ graph2|safe }}
+    </div>
+
+    <!-- Fare vs. Age by Gender -->
+    <h3>Fare vs. Age by Gender</h3>
+    <div class="graph-container">
+        {{ graph3|safe }}
+    </div>
+
+    <!-- Prediction Form -->
+    <h2>Predict Survival</h2>
+    <form action="/predict" method="POST">
+        <label for="sex">Sex (0 = Male, 1 = Female):</label>
+        <input type="number" id="sex" name="sex" min="0" max="1" required>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" step="0.1" required>
+        <label for="fare">Fare:</label>
+        <input type="number" id="fare" name="fare" step="0.01" required>
+        <label for="embarked">Embarked (0 = C, 1 = Q, 2 = S):</label>
+        <input type="number" id="embarked" name="embarked" min="0" max="2" required>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
